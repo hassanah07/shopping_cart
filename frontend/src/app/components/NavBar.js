@@ -13,28 +13,28 @@ const NavBar = () => {
           <h1>GroupShopper</h1>
           <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
             <Link href="/" className="mr-5 hover:text-gray-900 capitalize">
-              Home
-            </Link>
-            <Link
-              href="/hoodies"
-              className="mr-5 hover:text-gray-900 capitalize"
-            >
-              Hoodies
-            </Link>
-            <Link href="/leds" className="mr-5 hover:text-gray-900 capitalize">
-              Led Lights
-            </Link>
-            <Link
-              href="/electronics"
-              className="mr-5 hover:text-gray-900 capitalize"
-            >
-              Electronics
+              🏠Home
             </Link>
             <Link
               href="/ladies"
               className="mr-5 hover:text-gray-900 capitalize"
             >
-              ladies section
+              💃ladies section
+            </Link>
+            <Link
+              href="/gents"
+              className="mr-5 hover:text-gray-900 capitalize"
+            >
+              🤵Men's Section
+            </Link>
+            <Link href="/leds" className="mr-5 hover:text-gray-900 capitalize">
+              🔦Led Lights
+            </Link>
+            <Link
+              href="/electronics"
+              className="mr-5 hover:text-gray-900 capitalize"
+            >
+              📱Electronics
             </Link>
           </nav>
           <button className="w-14">

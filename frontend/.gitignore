@@ -1,9 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/backend/node_modules
-/frontend/node_modules
-
+/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -28,8 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-/backend/.env
-/frontend/.env*.local
+.env*.local
 
 # vercel
 .vercel

@@ -25,7 +25,7 @@ const Cart = () => {
 
   // Calculate total price
   const totalPrice = cartData.reduce((total, item) => {
-    return total + item.qty * item.data.price;
+    return total + item.qty * Math.round(item.data.price);
   }, 0);
 
   return (
@@ -74,7 +74,7 @@ const Cart = () => {
                       <p className="w-1/4 flex text-sm font-semibold">
                         Price:{" "}
                         <u className="text-red-500">
-                          {elem.qty * elem.data.price}
+                          {elem.qty * Math.round(elem.data.price)}
                         </u>
                       </p>
                     </p>
@@ -95,7 +95,8 @@ const Cart = () => {
             {/* Display total price */}
             <div className="py-4 text-right">
               <p className="text-lg font-semibold">
-                Total Price: <span className="text-red-500">{totalPrice}</span>
+                Total Price:{" "}
+                <span className="text-red-500">{Math.round(totalPrice)}</span>
               </p>
             </div>
           </div>
