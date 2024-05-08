@@ -30,12 +30,15 @@ const Cart = () => {
 
   return (
     <>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section className="text-gray-600 body-font overflow-hidden bg-gradient-to-r from-emerald-400 from-5% via-teal-400 to-teal-200 min-h-screen">
         <div className="container px-5 py-24 mx-auto">
           <div className="-my-8 divide-y-2 divide-gray-100">
             {cartData.map((elem, index) => {
               return (
-                <div className="py-8 flex flex-wrap md:flex-nowrap" key={index}>
+                <div
+                  className="py-8 flex flex-wrap md:flex-nowrap backdrop-blur-xl border-spacing-2 rounded"
+                  key={index}
+                >
                   <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                     <span className="font-semibold title-font text-gray-700 capitalize">
                       {elem.data.category}
@@ -48,7 +51,7 @@ const Cart = () => {
                     {elem.data.category}
                   </div>
                   <div className="md:flex-grow">
-                    <h2 className="text-lg caption-top font-medium text-red-400 title-font mb-2">
+                    <h2 className="text-lg caption-top font-semibold text-red-800 title-font mb-2">
                       {elem.data.title}
                     </h2>
                     <p className="leading-relaxed flex justify-around">

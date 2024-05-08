@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const Cart = require("../Modals/Cart");
 
 router.post("/addToCart", async (req, res) => {
-  console.log("object");
+  res.json(req.body);
 });
 
 module.exports = router;
