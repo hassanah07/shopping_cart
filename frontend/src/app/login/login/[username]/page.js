@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
 const Page = ({ params }) => {
@@ -37,7 +37,6 @@ const Page = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
-    // console.log(data);
     let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/users/login`, {
       method: "POST",
       headers: {
@@ -46,10 +45,12 @@ const Page = ({ params }) => {
       body: JSON.stringify(data)
     });
     res = await res.json();
-    console.log(res);
-
+    if (res.status === false) {
+      toast.error(res.msg, toastOptions);
+    }
     if (res.status === true) {
       localStorage.setItem("userToken", res.token);
+      toast.success("Login successful", toastOptions);
       if (res.userStatus === true) {
         router.push("/");
       } else {
@@ -59,7 +60,7 @@ const Page = ({ params }) => {
   };
   return (
     <div className="text-black body-font bg-white dark:bg-black dark:text-white flex items-center justify-center min-h-screen">
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <section className="text-black body-font relative md:w-[70%]">
         <div className="container px-5 mx-auto my-8 md:w-[50%] shadow-2xl shadow-popover-foreground">
           <div className="flex flex-col text-center w-full">
@@ -127,12 +128,12 @@ const Page = ({ params }) => {
                   Never Share Your credentials with anyone
                 </small>
                 <p className="leading-normal my-5">
-                  <b className="text-blue-600 hover:animate-pulse">
+                  {/* <b className="text-blue-600 hover:animate-pulse">
                     <Link href="/registration">Click Here for Sign Up</Link>
-                  </b>
+                  </b> */}
                   <br />
                   <b className="text-red-600 hover:animate-pulse">
-                    <Link href="/resetpassword">
+                    <Link href={`/login/resetpassword/${email}`}>
                       Forget Password? Reset Now
                     </Link>
                   </b>

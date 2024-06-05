@@ -1,11 +1,33 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 
 const NavBar = () => {
-  const cartData = useSelector((data) => data.cart.cart);
+  // const cartData = useSelector((data) => data.cart.cart);
+  const [update, setUpdate] = useState(0);
+  const [cart, setCart] = useState(0);
+  // const data = async () => {
+  //   let res = await fetch(
+  //     `${process.env.NEXT_PUBLIC_HOST}/api/products/cartNumber`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "auth-token": localStorage.getItem("userToken")
+  //       }
+  //     }
+  //   );
+  //   res = res.json();
+  //   // setCart(res);
+  //   console.log(res);
+  //   setUpdate(Math.round(Math.random() * 234648674865));
+  // };
+  // useEffect(() => {
+  //   data();
+  // }, []);
+
   return (
     <>
       <header className="text-gray-600 body-font">
@@ -45,7 +67,7 @@ const NavBar = () => {
               📱Electronics
             </Link>
           </nav>
-          <button className="w-14">
+          {/* <button className="w-14">
             <Link
               href="/cart"
               className="w-full h-fit text-red-700 hover:text-slate-900 capitalize"
@@ -55,11 +77,11 @@ const NavBar = () => {
                   <FaCartPlus className="font-semibold text-red-600 text-2xl" />
                 </span>
                 <span className="absolute top-0 right-0 font-semibold text-sm text-red-500 bg-white rounded-full px-2 py-1">
-                  {cartData.length}
+                  {cart}
                 </span>
               </div>
             </Link>
-          </button>
+          </button> */}
         </div>
       </header>
     </>

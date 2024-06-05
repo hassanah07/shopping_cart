@@ -40,7 +40,6 @@ const Page = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confPassword) {
-      console.log("please confirm password");
     } else {
       const data = { oldPassword, password };
       let res = await fetch(
@@ -55,7 +54,6 @@ const Page = ({ params }) => {
         }
       );
       res = await res.json();
-      console.log(res);
       if (res.status === true) {
         if (res.user.addressAdded !== true) {
           router.push("/login/addAddress");
@@ -78,7 +76,6 @@ const Page = ({ params }) => {
       }
     );
     res = await res.json();
-    console.log(res);
     if (res.status === true) {
       if (res.user.addressAdded !== true) {
         router.push("/login/addAddress");

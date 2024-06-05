@@ -7,6 +7,11 @@ const CartSchema = mongoose.Schema(
       type: String,
       required: true
     },
+    cartId: {
+      type: String,
+      required: true
+    },
+    product: [],
     status: {
       type: Boolean,
       default: false
@@ -15,7 +20,6 @@ const CartSchema = mongoose.Schema(
       type: Number,
       default: 1
     },
-    data: []
   },
   { timeStamps: true }
 );

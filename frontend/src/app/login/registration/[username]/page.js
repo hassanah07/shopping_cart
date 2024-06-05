@@ -4,6 +4,7 @@ import { redirect, useRouter } from "next/navigation";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const Page = ({ params }) => {
   const router = useRouter();
@@ -41,7 +42,6 @@ const Page = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { name, email, mobile };
-    // console.log(data);
     try {
       let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/users/regn`, {
         method: "POST",
@@ -51,9 +51,18 @@ const Page = ({ params }) => {
         body: JSON.stringify(data)
       });
       res = await res.json();
-      console.log(res);
+      if (res.status === true) {
+        toast.success(req.msg, toastOptions);
+        setTimeout(() => {
+          router.push(`/login/login/${username}`);
+        }, 3500);
+      }
     } catch (error) {
-      console.log(error);
+      return (
+        <>
+          <h1>Something Went Wrong!</h1>
+        </>
+      );
     }
   };
   return (

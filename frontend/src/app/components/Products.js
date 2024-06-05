@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import AddToCartButton from "./AddToCartButton";
+import Link from "next/link";
 
 const Products = async () => {
   let response = await fetch("https://fakestoreapi.com/products");
@@ -13,7 +14,11 @@ const Products = async () => {
           <div className="flex flex-wrap -m-4 text-black dark:text-slate-300 h-[100%]">
             {Object.keys(response).map((elem, index) => {
               return (
-                <div className="xl:w-1/5 lg:w-1/4 md:w-1/3 p-4" key={index}>
+                <div
+                  // href={`/productView/${response[elem].id}`}
+                  className="xl:w-1/5 lg:w-1/4 md:w-1/3 p-4"
+                  key={index}
+                >
                   <div className="border border-gray-200 p-6 rounded-lg backdrop-blur-3xl z-10 shadow-2xl shadow-purple-400">
                     <h2 className="font-semibold title-font mb-2 text-slate-700 h-16">
                       {response[elem].title.slice(0, 40)}...

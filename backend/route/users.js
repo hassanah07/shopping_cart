@@ -217,5 +217,65 @@ router.post("/addAddress", fetchUser, async (req, res) => {
       .json({ status: false, msg: "Internal Server Error", error });
   }
 });
+router.post("/resetPassword", async (req, res) => {
+  try {
+    let user = await Users.findOne({ email: req.body.email });
+    if (!user) {
+      res.json({ status: false, msg: "User not found" });
+    } else {
+      const randPassword = (Math.random() + 1)
+        .toString(36)
+        .substring(3)
+        .toUpperCase();
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(randPassword, salt);
+      user = await Users.findByIdAndUpdate(
+        { _id: user._id },
+        { status: false, password: hashedPassword }
+      );
+      try {
+        const transporter = nodemailer.createTransport({
+          host: "smtp.forwardemail.net",
+          port: 465,
+          secure: true,
+          service: "gmail",
+          auth: {
+            user: process.env.MAILER_USERID,
+            pass: process.env.MAILER_PASSWORD
+          }
+        });
+        async function main() {
+          const info = await transporter.sendMail({
+            from: '"Server Mail"anowarulah07@gmail.com',
+            to: req.body.email,
+            subject: "Your Password Re-Generated",
+            html: `
+        <h2><b>Happy to Serve you! your new re-generated password is:</b></h2>
+        <b>password :</b>${randPassword}<br />
+        <small>Login with your system generated Password</small><br />
+        <small>If failed to login! Please Try to reset your password!</small>
+        `
+          });
+          res
+            .status(200)
+            .json({ status: true, msg: "Successful! Check Your Email" });
+        }
+        main().catch(() => {
+          res
+            .status(500)
+            .json({ status: false, mag: "Please Try After Some Time" });
+        });
+      } catch (error) {
+        res
+          .status(500)
+          .json({ msg: "Internal Server Error for Email Service" });
+      }
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ status: false, msg: "Internal Server Error", error });
+  }
+});
 
 module.exports = router;

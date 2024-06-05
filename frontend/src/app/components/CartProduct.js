@@ -17,18 +17,6 @@ const CartProduct = ({ elem }) => {
           {elem.data.title}
         </h2>
         <p className="leading-relaxed flex justify-around">
-          {/* <p className="w-1/4">
-            <div className="flex">
-              Qty:
-              <button>
-                <FaCaretSquareLeft />
-              </button>
-              {elem.qty}
-              <button>
-                <FaCaretSquareRight />
-              </button>
-            </div>
-          </p> */}
           <p className="w-1/4">MRP:{elem.data.price}</p>
           <p className="w-1/4">Price:{elem.data.price}</p>
         </p>
