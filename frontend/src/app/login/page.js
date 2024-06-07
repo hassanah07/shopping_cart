@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
   const router = useRouter();
@@ -11,6 +13,16 @@ const Page = () => {
       redirect("/admin/dashboard");
     }
   }, []);
+  const toastOptions = {
+    theme: "dark",
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined
+  };
 
   const [email, setEmail] = useState("hassanah0007@gmail.com");
   const handleChange = (e) => {
@@ -31,11 +43,16 @@ const Page = () => {
         }
       );
       response = await response.json();
-      console.log(response.status);
       if (response.status === true) {
-        router.push(`/login/login/${email}`);
+        toast.success(response.msg, toastOptions);
+        setTimeout(() => {
+          router.push(`/login/login/${email}`);
+        }, 3500);
       } else {
-        router.push(`/login/registration/${email}`);
+        toast.success(response.msg, toastOptions);
+        setTimeout(() => {
+          router.push(`/login/registration/${email}`);
+        }, 3500);
       }
     } catch (error) {
       console.log(error);
@@ -43,7 +60,7 @@ const Page = () => {
   };
   return (
     <div className="text-black body-font bg-white dark:bg-black dark:text-white flex items-center justify-center min-h-screen">
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <section className="text-black body-font relative md:w-[70%]">
         <div className="container px-5 mx-auto my-8 md:w-[50%] shadow-2xl shadow-popover-foreground">
           <div className="flex flex-col text-center w-full">
@@ -78,7 +95,7 @@ const Page = () => {
               </div>
               <div className="p-2 w-full">
                 <button
-                  className="text-slate-700 dark:text-white border-2 bg-white dark:bg-black py-2 px-8 focus:outline-none hover:bg-slate-300 hover:text-pink-900 dark:hover:bg-slate-700 text-lg font-semibold shadow-2xl shadow-popover-foreground dark:shadow-white w-full justify-center"
+                  className="text-slate-700 dark:text-white border-2 bg-white dark:bg-black py-2 px-8 focus:outline-none hover:bg-blue-600 dark:hover:bg-blue-700 text-lg font-semibold shadow-2xl shadow-popover-foreground dark:shadow-white w-full justify-center"
                   onClick={handleSubmit}
                 >
                   Access Now

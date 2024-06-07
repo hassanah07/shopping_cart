@@ -97,7 +97,7 @@ const Cart = () => {
 
   return (
     <>
-      <section className="text-gray-600 body-font overflow-hidden bg-gradient-to-r from-emerald-400 from-5% via-teal-400 to-teal-200 min-h-screen">
+      <section className="body-font overflow-hidden bg-gray-900 min-h-screen">
         <div className="container px-5 py-24 mx-auto">
           <div className="-my-8 divide-y-2 divide-gray-100">
             {cart.length === 0 && (
@@ -109,7 +109,7 @@ const Cart = () => {
               cart.map((item, index) => {
                 return (
                   <div
-                    className="py-2 flex flex-wrap md:flex-nowrap backdrop-blur-xl border-spacing-2 rounded"
+                    className="py-2 flex flex-wrap md:flex-nowrap backdrop-blur-xl border-spacing-2 rounded pb-24"
                     key={index}
                   >
                     <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
@@ -151,12 +151,12 @@ const Cart = () => {
                           </div>
                         </p>
                         <p className="w-1/4">
-                          MRP: <strike>{item.price}</strike>
+                          MRP: <strike>₹{item.price}</strike>
                         </p>
                         <p className="w-1/4 flex text-sm font-semibold">
                           Price:{" "}
                           <u className="text-red-500">
-                            {item.qty * Math.round(item.price)}
+                            ₹{item.qty * Math.round(item.price)}
                           </u>
                         </p>
                       </p>
@@ -174,10 +174,13 @@ const Cart = () => {
                   </div>
                 );
               })}
-            <div className="min-h-full py-4 text-right">
+            <div className="fixed p-2 text-right right-5 bottom-5 bg-slate-700 rounded-md backdrop-blur-3xl">
               <p className="text-lg font-semibold">
-                Total Price:
-                <span className="text-red-500">{totalPrice}</span>
+                <span className="text-red-500">Total Price: ₹{totalPrice}</span>
+                <hr />
+                <button className="text-center justify-center bg-red-500 px-4 w-[90%] rounded-md hover:bg-red-700 shadow-2xl shadow-blue-600 m-2 py-1">
+                  Checkout
+                </button>
               </p>
             </div>
           </div>

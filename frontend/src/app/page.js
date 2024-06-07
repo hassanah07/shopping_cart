@@ -1,13 +1,10 @@
 import React from "react";
-import Products from "./components/Products";
-import CartCount from "./components/CartCount";
+import HomeGrid from "./components/coreComponents/HomeGrid";
 
 const Home = () => {
-  const cartId = 0;
   return (
     <div>
-      <CartCount cartId={cartId} />
-      <Products />
+      <HomeGrid />
     </div>
   );
 };

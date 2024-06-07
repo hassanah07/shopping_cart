@@ -3,20 +3,21 @@ import Link from "next/link";
 import CartComponent from "../components/coreComponents/Cart";
 import AddToCartButton from "../components/AddToCartButton";
 
-const Products = async () => {
+
+const MensPage = async () => {
   let res = await fetch("https://fakestoreapi.com/products");
   res = await res.json();
   return (
     <div>
       <CartComponent />
       <section className="text-gray-400 body-font bg-gray-900">
-        <div className="container px-5 py-10 mx-auto">
+        <div className="container px-5 py-10 mx-auto w-[100%] md:w-[90%]">
           <div className="flex flex-wrap -m-4">
             {res.map((elem, index) => {
               return (
-                <div className="xl:w-1/4 md:w-1/3 p-4" key={index}>
+                <div className="w-[100%] xl:w-1/4 md:w-1/3 p-4" key={index}>
                   <div className="border border-gray-700 border-opacity-75 p-6 rounded-xl shadow-2xl hover:shadow-blue-700">
-                    <Link href={`/`} title={elem.title}>
+                    <Link href={`/productView/${elem.id}`} title={elem.title}>
                       <img
                         src={elem.image}
                         alt={elem.title}
@@ -45,4 +46,4 @@ const Products = async () => {
   );
 };
 
-export default Products;
+export default MensPage;
